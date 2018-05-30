@@ -1,0 +1,6 @@
+name: "Shortcut"
+authors: ["PresentKim", "If-Team"]
+version: "0.1.0-DEV"
+main: "kim.present.shortcut.Shortcut"
+api: ["1.0.0"]
+website: "https://github.com/PresentKim/Shortcut-Nukkit"
