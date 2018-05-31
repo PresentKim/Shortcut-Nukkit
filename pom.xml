@@ -36,5 +36,18 @@
     <build>
         <finalName>${project.name}-${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
+
+        <!-- Code for my testing -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <outputDirectory>../</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+
     </build>
 </project>
