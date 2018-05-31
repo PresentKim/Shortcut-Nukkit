@@ -8,10 +8,18 @@ import kim.present.shortcut.lang.PluginLang;
 
 public final class Shortcut extends PluginBase {
 
+    private static Shortcut instance;
+
+    public static Shortcut getInstance() {
+        return Shortcut.instance;
+    }
+
     private PluginLang language;
 
     @Override
     public void onLoad() {
+        Shortcut.instance = this;
+
         //Create default data folders
         File dataFolder = this.getDataFolder();
         File langFolder = new File(dataFolder, "lang/");
