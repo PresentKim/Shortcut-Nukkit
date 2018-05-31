@@ -34,6 +34,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.name}-${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
     </build>
 </project>
