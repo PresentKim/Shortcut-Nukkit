@@ -7,6 +7,7 @@ import cn.nukkit.plugin.PluginBase;
 import kim.present.shortcut.lang.PluginLang;
 
 public final class Shortcut extends PluginBase {
+    public static final String resourceNamespace = Shortcut.class.getPackage().getName().replace('.', '/') + '/';
 
     private static Shortcut instance;
 
@@ -27,11 +28,12 @@ public final class Shortcut extends PluginBase {
 
         //Save default lang files (according to nukkit language setting)
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(this.getResource("lang/languageList.ini")));
+            BufferedReader br = new BufferedReader(new InputStreamReader(this.getResource(resourceNamespace + "lang/languageList.ini")));
             String langName;
             while ((langName = br.readLine()) != null) {
                 if (!(new File(langFolder, langName + "/lang.ini")).exists()) {
-                    this.saveResource("lang/" + langName + "/lang.ini", false);
+                    String langFileName = "lang/" + langName + "/lang.ini";
+                    this.saveResource(resourceNamespace + langFileName, langFileName, false);
                 }
             }
         } catch (IOException e) {
@@ -42,7 +44,7 @@ public final class Shortcut extends PluginBase {
         try {
             File languageListFile = new File(this.getDataFolder(), "lang/languageList.ini");
             if (!languageListFile.exists()) {
-                this.saveResource("lang/languageList.ini", false);
+                this.saveResource(resourceNamespace + "lang/languageList.ini", "lang/languageList.ini", false);
             }
             for (String line : Utils.readFile(languageListFile).split("\n")) {
                 PluginLang.addLang(line.trim());
@@ -76,7 +78,7 @@ public final class Shortcut extends PluginBase {
         if (!PluginLang.availableLang(langName)) {
             langName = PluginLang.FALLBACK_LANGUAGE;
         }
-        this.saveResource("lang/" + langName + "/config.yml", "config.yml", false);
+        this.saveResource(resourceNamespace + "lang/" + langName + "/config.yml", "config.yml", false);
     }
 
     public PluginLang getLanguage() {
