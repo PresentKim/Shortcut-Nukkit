@@ -28,7 +28,7 @@ public final class Shortcut extends PluginBase {
 
         //Save default lang files (according to nukkit language setting)
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(this.getResource(resourceNamespace + "lang/languageList.ini")));
+            BufferedReader br = new BufferedReader(new InputStreamReader(this.getResource(resourceNamespace + "lang/language.list")));
             String langName;
             while ((langName = br.readLine()) != null) {
                 if (!(new File(langFolder, langName + "/lang.ini")).exists()) {
@@ -42,9 +42,9 @@ public final class Shortcut extends PluginBase {
 
         //Load lang list
         try {
-            File languageListFile = new File(this.getDataFolder(), "lang/languageList.ini");
+            File languageListFile = new File(this.getDataFolder(), "lang/language.list");
             if (!languageListFile.exists()) {
-                this.saveResource(resourceNamespace + "lang/languageList.ini", "lang/languageList.ini", false);
+                this.saveResource(resourceNamespace + "lang/language.list", "lang/language.list", false);
             }
             for (String line : Utils.readFile(languageListFile).split("\n")) {
                 PluginLang.addLang(line.trim());
