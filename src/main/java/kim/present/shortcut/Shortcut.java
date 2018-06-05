@@ -1,21 +1,22 @@
 package kim.present.shortcut;
 
-import java.io.*;
-
-import cn.nukkit.utils.Utils;
 import cn.nukkit.plugin.PluginBase;
+import cn.nukkit.utils.Utils;
 import kim.present.shortcut.lang.PluginLang;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public final class Shortcut extends PluginBase {
     public static final String resourceNamespace = Shortcut.class.getPackage().getName().replace('.', '/') + '/';
-
     private static Shortcut instance;
+    private PluginLang language;
 
     public static Shortcut getInstance() {
         return Shortcut.instance;
     }
-
-    private PluginLang language;
 
     @Override
     public void onLoad() {
