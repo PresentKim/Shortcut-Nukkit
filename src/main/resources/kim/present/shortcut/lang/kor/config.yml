@@ -6,3 +6,10 @@ settings:
   #다중 언어 설정
   #가능한 언어: eng, kor
   language: "kor"
+
+permissions:
+  shortcut:
+    children:
+      shortcut.use:
+        description: Permission to use the shortcut
+        default: true

@@ -6,3 +6,10 @@ settings:
   #Multi-language setting
   #Available: eng, kor
   language: "eng"
+
+permissions:
+  shortcut:
+    children:
+      shortcut.use:
+        description: 단축 기능을 사용할 수 있는 권한
+        default: true

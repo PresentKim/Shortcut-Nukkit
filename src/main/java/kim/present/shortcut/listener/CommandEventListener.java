@@ -35,7 +35,9 @@ public class CommandEventListener implements Listener {
     }
 
     public String onCommandEnter(CommandSender sender, String command) {
-        //TODO: Replace command when command was shortcut
+        if (sender.hasPermission("shortcut.use")) {
+            //TODO: Replace command when command was shortcut
+        }
         return command;
     }
 }

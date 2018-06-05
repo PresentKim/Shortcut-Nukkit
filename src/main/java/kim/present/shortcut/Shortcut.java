@@ -1,5 +1,6 @@
 package kim.present.shortcut;
 
+import cn.nukkit.permission.Permission;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Utils;
 import kim.present.shortcut.lang.PluginLang;
@@ -9,11 +10,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public final class Shortcut extends PluginBase {
     public static final String resourceNamespace = Shortcut.class.getPackage().getName().replace('.', '/') + '/';
     private static Shortcut instance;
     private PluginLang language;
+    private List<Permission> permissions = new ArrayList<>();
 
     public static Shortcut getInstance() {
         return Shortcut.instance;
@@ -70,6 +75,12 @@ public final class Shortcut extends PluginBase {
         this.language = new PluginLang(langName, this.getDataFolder() + "/lang/", this);
         this.getLogger().info(this.getLanguage().translateString("language.selected", new String[]{this.language.getName(), this.language.getLang()}));
 
+        //Load permissons from config.yml
+        @SuppressWarnings("unchecked")
+        Map<String, Object> permissionsData = (Map<String, Object>) this.getConfig().get("permissions");
+        this.permissions = Permission.loadPermissions(permissionsData);
+
+        //Register event listener
         this.getServer().getPluginManager().registerEvents(new CommandEventListener(this), this);
     }
 
