@@ -3,6 +3,7 @@ package kim.present.shortcut;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Utils;
 import kim.present.shortcut.lang.PluginLang;
+import kim.present.shortcut.listener.CommandEventListener;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -68,6 +69,8 @@ public final class Shortcut extends PluginBase {
         }
         this.language = new PluginLang(langName, this.getDataFolder() + "/lang/", this);
         this.getLogger().info(this.getLanguage().translateString("language.selected", new String[]{this.language.getName(), this.language.getLang()}));
+
+        this.getServer().getPluginManager().registerEvents(new CommandEventListener(this), this);
     }
 
     /**
